@@ -6,7 +6,7 @@ import { GameProvider } from '../context/GameProvider';
 
 const defaultKey = process.env.NEXT_PUBLIC_DEFAULT_KEY;
 const host = process.env.NEXT_PUBLIC_HOST
-const port = process.env.NEXT_PUBLIC_PORT
+const port = process.env.NEXT_PUBLIC_PORT   
 
 export const client = new Client(defaultKey, host, port);
 

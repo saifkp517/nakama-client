@@ -75,7 +75,7 @@ const OnboardingScreen: React.FC = () => {
     const handleCreateRoom = async () => {
         const result = await client.rpc(session!, 'create-match', { isPrivate: true });
         if (result.payload) {
-            const code = result.payload.matchId;
+            const code = (result.payload as { matchId: string }).matchId;
             setCreatedRoomCode(code);
             setMode('create-room');
             listenForMatch(code);
