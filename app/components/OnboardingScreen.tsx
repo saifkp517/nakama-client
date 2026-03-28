@@ -9,6 +9,7 @@ const OpCode = {
     GameStateUpdate: 1,
     SymbolAssign: 2,
     PlayerMove: 20,
+    MatchEnd: 3,
 }
 
 type Mode = 'nickname' | 'choose' | 'searching' | 'create-room';
@@ -48,6 +49,15 @@ const OnboardingScreen: React.FC = () => {
                     setWinner(null)
                     setCurrentTurn(data.currentTurn);
                     router.push(`/game?matchId=${matchId}`);
+                    break;
+
+                case OpCode.MatchEnd:
+                    // Reset all game state
+                    setWinner(null);
+                    setBoard([null, null, null, null, null, null, null, null, null]);
+                    setCurrentTurn('');
+                    setMatchId('');
+                    router.push('/');  // or '/leaderboard'
                     break;
             }
         };
