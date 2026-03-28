@@ -20,7 +20,7 @@ const OnboardingScreen: React.FC = () => {
     const [createdRoomCode, setCreatedRoomCode] = useState('');
     const [copied, setCopied] = useState(false);
     const router = useRouter();
-    const { socket, session, client, authenticate, setMatchId, setMySymbol, setBoard, setCurrentTurn } = useGame();
+    const { socket, session, client, authenticate, setMatchId, setMySymbol, setBoard, setCurrentTurn, setWinner } = useGame();
 
     useEffect(() => {
         if (session) {
@@ -45,6 +45,7 @@ const OnboardingScreen: React.FC = () => {
                     break;
                 case OpCode.GameStateUpdate:
                     setBoard(data.board);
+                    setWinner(null)
                     setCurrentTurn(data.currentTurn);
                     router.push(`/game?matchId=${matchId}`);
                     break;
