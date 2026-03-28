@@ -30,7 +30,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         await client.updateAccount(newSession, { display_name: nickname });
         setSession(newSession);
 
-        const newSocket = client.createSocket(false, false);
+        const newSocket = client.createSocket(true);
         await newSocket.connect(newSession, false);
         setSocket(newSocket);
     };
@@ -44,7 +44,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             const restoredSession = await client.authenticateDevice(existingDeviceId!, false); // false = don't create
             setSession(restoredSession);
 
-            const restoredSocket = client.createSocket(false, false);
+            const restoredSocket = client.createSocket(true);
             await restoredSocket.connect(restoredSession, false);
             setSocket(restoredSocket);
         }
