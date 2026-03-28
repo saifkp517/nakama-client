@@ -4,7 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { Client, Socket, Session } from '@heroiclabs/nakama-js';
 import { GameProvider } from '../context/GameProvider';
 
-export const client = new Client('defaultkey', '127.0.0.1', '7350');
+const defaultKey = process.env.NEXT_PUBLIC_DEFAULT_KEY;
+const host = process.env.NEXT_PUBLIC_HOST
+const port = process.env.NEXT_PUBLIC_PORT
+
+export const client = new Client(defaultKey, host, port);
 
 function getOrCreateDeviceId(): string {
     const key = 'ttt_device_id';
